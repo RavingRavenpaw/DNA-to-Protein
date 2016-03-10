@@ -55,3 +55,8 @@ def DNAtoRNA(DNAStrand1):
     print("")
     print("RNA Strand 1: %s") % RNAStrand1
     print("RNA Strand 2: %s") % RNAStrand2
+
+def RNAtoProtein(RNAStrand1):
+    #Chunk the RNA into codons
+    AminoAcids = []
+    timesDone = 0
