@@ -1,4 +1,4 @@
-def convert(startingType, endingType):
+def convert(startType, startSequence, endType, endSequence):
     #GENERAL INFO
     #------------------------------------------
     #
@@ -15,3 +15,43 @@ def convert(startingType, endingType):
     #
     #Amino Acids & Corresponding Codons:
     #No idea. I'll look this up later.
+    print("test")
+
+def DNAtoRNA(DNAStrand1):
+    #Initialization of variables
+    timesDone = 0
+    DNAStrand2 = []
+    
+    #Run through the to-be second DNA Strand
+    #a number of times equivalent to the number
+    #of letters in it, and replace each base
+    #with its complement.
+    for timesDone in range(len(DNAStrand1)):
+        if(DNAStrand1[timesDone] == "T"):
+            DNAStrand2.append("A")
+        elif(DNAStrand1[timesDone] == "A"):
+            DNAStrand2.append("T")
+        elif(DNAStrand1[timesDone] == "C"):
+            DNAStrand2.append("G")
+        elif(DNAStrand1[timesDone] == "G"):
+            DNAStrand2.append("C")
+        timesDone += 1
+    
+    #Change the DNAStrand2 list to a string and clean it up.
+    DNAStrand2 = str(DNAStrand2)
+    DNAStrand2 = DNAStrand2.replace(",", "")
+    DNAStrand2 = DNAStrand2.replace("[", "")
+    DNAStrand2 = DNAStrand2.replace("]", "")
+    DNAStrand2 = DNAStrand2.replace(" ", "")
+    DNAStrand2 = DNAStrand2.replace("\'", "")
+    
+    #Replace all T's with U's in the to-be RNA strands.
+    RNAStrand1 = DNAStrand1.replace("T", "U")
+    RNAStrand2 = DNAStrand2.replace("T", "U")
+    
+    #Print the results of the strands of DNA and RNA.
+    print("DNA Strand 1: %s") % DNAStrand1
+    print("DNA Strand 2: %s") %DNAStrand2
+    print("")
+    print("RNA Strand 1: %s") % RNAStrand1
+    print("RNA Strand 2: %s") % RNAStrand2
