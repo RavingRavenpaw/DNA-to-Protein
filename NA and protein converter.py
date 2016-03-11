@@ -59,6 +59,29 @@ def RNAtoAminoAcids(RNAStrand):
     codonsStr = codonsStr.replace("\'", "")
     print("RNA Codons: %s") % codonsStr
     
-def DNAtoCodons(DNAStrand1):
+    #Amino Acids
+    Phe = ["UUU", "UUC"]
+    Leu = ["UUA", "UUG", "CUU", "CUC", "CUA", "CUG"]
+    Ile = ["AUU", "AUC", "AUA"]
+    Start_Methionine = ["AUG"]
+    Val = ["GUU", "GUC", "GUA", "GUG"]
+    Ser = ["UCU", "UCC", "UCA", "UCG", "AGU", "AGC"]
+    Pro = ["CCU", "CCC", "CCA", "CCG"]
+    Thr = ["ACU", "ACC", "ACA", "ACG"]
+    Ala = ["GCU", "GCC", "GCA", "GCG"]
+    Tyr = ["UAU", "UAC"]
+    STOP = ["UAA", "UAG", "UGA"]
+    His = ["CAU", "CAC"]
+    Glu = ["CAA", "CAG", "GAA", "GAG"]
+    Asn = ["AAU", "AAC"]
+    Lys = ["AAA", "AAG"]
+    Asp = ["GAU", "GAC"]
+    Cys = ["UGU", "UGC"]
+    Trp = ["UGG"]
+    Arg = ["CGU", "CGC", "CGA", "CGC", "AGA", "AGG"]
+    Gly = ["GGU", "GGC", "GGA", "GGG"]
+    
+    
+def DNAtoAminoAcids(DNAStrand1):
     DNAtoRNA(DNAStrand1)
     RNAtoAminoAcids(RNAStrand)
