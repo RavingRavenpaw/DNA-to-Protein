@@ -21,6 +21,8 @@ def DNAtoRNA(DNAStrand1):
     #Initialization of variables
     timesDone = 0
     DNAStrand2 = []
+    global RNAStrand
+    RNAStrand = ""
     
     #Run through the to-be second DNA Strand
     #a number of times equivalent to the number
@@ -47,10 +49,6 @@ def DNAtoRNA(DNAStrand1):
     
     #Replace all T's with U's in the to-be RNA strand.
     RNAStrand = DNAStrand2.replace("T", "U")
-    
-    #Make the RNAStrand variable global so the RNAtoAminoAcids function
-    #can utilize it.
-    global RNAStrand
     
     #Print the results of the strands of DNA and RNA.
     print("DNA Strand 1: %s") % DNAStrand1
