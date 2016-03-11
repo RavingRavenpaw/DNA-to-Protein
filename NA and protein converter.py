@@ -37,7 +37,7 @@ def DNAtoRNA(DNAStrand1):
     print("")
     print("RNA Strand: %s") % RNAStrand
 
-def RNAtoAminoAcids(RNAStrand):
+def RNAtoProtein(RNAStrand):
     #Initialization of variables
     AminoAcids = []
     codons = []
@@ -52,18 +52,12 @@ def RNAtoAminoAcids(RNAStrand):
         basePairToRead += 3
         timesDone += 3
     
-    codonsStr = str(codons)
-    codonsStr = codonsStr.replace(",", "")
-    codonsStr = codonsStr.replace("[", "")
-    codonsStr = codonsStr.replace("]", "")
-    codonsStr = codonsStr.replace("\'", "")
-    print("RNA Codons: %s") % codonsStr
     
     #Amino Acids
     Phe = ["UUU", "UUC"]
     Leu = ["UUA", "UUG", "CUU", "CUC", "CUA", "CUG"]
     Ile = ["AUU", "AUC", "AUA"]
-    Start_Methionine = ["AUG"]
+    START = ["AUG"]
     Val = ["GUU", "GUC", "GUA", "GUG"]
     Ser = ["UCU", "UCC", "UCA", "UCG", "AGU", "AGC"]
     Pro = ["CCU", "CCC", "CCA", "CCG"]
@@ -81,7 +75,97 @@ def RNAtoAminoAcids(RNAStrand):
     Arg = ["CGU", "CGC", "CGA", "CGC", "AGA", "AGG"]
     Gly = ["GGU", "GGC", "GGA", "GGG"]
     
+    #Reset the timesDone variable.
+    timesDone = 0
     
+    #If the letters of the codon matches the letters of any of
+    #an amino acid's possible combination of bases, add that amino acid
+    #to the list of amino acids.
+    for timesDone in range(len(codons)):
+        if codons[timesDone] in Phe:
+            AminoAcids.append("Phe")
+            
+        elif codons[timesDone] in Leu:
+            AminoAcids.append("Leu")
+            
+        elif codons[timesDone] in Ile:
+            AminoAcids.append("Ile")
+            
+        elif codons[timesDone] in START:
+            AminoAcids.append("START")
+            
+        elif codons[timesDone] in Val:
+            AminoAcids.append("Val")
+            
+        elif codons[timesDone] in Ser:
+            AminoAcids.append("Ser")
+            
+        elif codons[timesDone] in Pro:
+            AminoAcids.append("Pro")
+            
+        elif codons[timesDone] in Thr:
+            AminoAcids.append("Thr")
+            
+        elif codons[timesDone] in Ala:
+            AminoAcids.append("Ala")
+            
+        elif codons[timesDone] in Tyr:
+            AminoAcids.append("Tyr")
+            
+        elif codons[timesDone] in STOP:
+            AminoAcids.append("STOP")
+            
+        elif codons[timesDone] in His:
+            AminoAcids.append("His")
+            
+        elif codons[timesDone] in Glu:
+            AminoAcids.append("Glu")
+            
+        elif codons[timesDone] in Asn:
+            AminoAcids.append("Asn")
+            
+        elif codons[timesDone] in Lys:
+            AminoAcids.append("Lys")
+            
+        elif codons[timesDone] in Asp:
+            AminoAcids.append("Asp")
+            
+        elif codons[timesDone] in Cys:
+            AminoAcids.append("Cys")
+            
+        elif codons[timesDone] in Trp:
+            AminoAcids.append("Trp")
+            
+        elif codons[timesDone] in Arg:
+            AminoAcids.append("Arg")
+            
+        elif codons[timesDone] in Gly:
+            AminoAcids.append("Gly")
+            
+        else:
+            AminoAcids.append("INVALID")
+            
+        timesDone += 1
+    
+    #Clean up the leftover parts of the list we don't need
+    #to display, and then print the codons and corresponding amino acids.
+    codonsStr = str(codons)
+    codonsStr = codonsStr.replace(",", "")
+    codonsStr = codonsStr.replace("[", "")
+    codonsStr = codonsStr.replace("]", "")
+    codonsStr = codonsStr.replace("\'", "")
+    
+    AminoAcidsStr = str(AminoAcids)
+    AminoAcidsStr = AminoAcidsStr.replace(",", "")
+    AminoAcidsStr = AminoAcidsStr.replace("[", "")
+    AminoAcidsStr = AminoAcidsStr.replace("]", "")
+    AminoAcidsStr = AminoAcidsStr.replace("\'", "")
+    
+    #Display the codons and amino acid chain/protein.
+    print("RNA Codons: %s") % codonsStr
+    print("Protein:    %s") % AminoAcidsStr
+        
+
 def DNAtoAminoAcids(DNAStrand1):
     DNAtoRNA(DNAStrand1)
-    RNAtoAminoAcids(RNAStrand)
+    RNAtoProtein(RNAStrand)
