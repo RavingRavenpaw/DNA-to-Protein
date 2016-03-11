@@ -1,4 +1,6 @@
 def DNAtoRNA(DNAStrand1):
+    #This function represents transcription!
+    
     #Initialization of variables
     timesDone = 0
     DNAStrand2 = []
@@ -38,12 +40,15 @@ def DNAtoRNA(DNAStrand1):
     print("RNA Strand: %s") % RNAStrand
 
 def RNAtoProtein(RNAStrand):
+    #This section represents translation!
+    
     #Initialization of variables
     AminoAcids = []
     codons = []
     codonsStr = ""
     timesDone = 0
     basePairToRead = 0
+    tRNACodonsStr = ""
     
     #Chunk the RNA into codons and save them to the
     #codons variable.
@@ -51,6 +56,27 @@ def RNAtoProtein(RNAStrand):
         codons.append(RNAStrand[basePairToRead] + RNAStrand[basePairToRead + 1] + RNAStrand[basePairToRead + 2])
         basePairToRead += 3
         timesDone += 3
+        
+    #Get codon string, clean up list.
+    codonsStr = str(codons)
+    codonsStr = codonsStr.replace(",", "")
+    codonsStr = codonsStr.replace("[", "")
+    codonsStr = codonsStr.replace("]", "")
+    codonsStr = codonsStr.replace("\'", "")
+        
+    #TGet tRNA Anti-Codons
+    for timesDone in range(len(codonsStr)):
+        if(codonsStr[timesDone] == "U"):
+            tRNACodonsStr = (tRNACodonsStr + "A")
+        elif(codonsStr[timesDone] == "A"):
+            tRNACodonsStr = (tRNACodonsStr + "U")
+        elif(codonsStr[timesDone] == "C"):
+            tRNACodonsStr = (tRNACodonsStr + "G")
+        elif(codonsStr[timesDone] == "G"):
+            tRNACodonsStr = (tRNACodonsStr + "C")
+        elif(codonsStr[timesDone] == " "):
+            tRNACodonsStr = (tRNACodonsStr + " ")
+        timesDone += 1
     
     
     #Amino Acids
@@ -149,12 +175,6 @@ def RNAtoProtein(RNAStrand):
     
     #Clean up the leftover parts of the list we don't need
     #to display, and then print the codons and corresponding amino acids.
-    codonsStr = str(codons)
-    codonsStr = codonsStr.replace(",", "")
-    codonsStr = codonsStr.replace("[", "")
-    codonsStr = codonsStr.replace("]", "")
-    codonsStr = codonsStr.replace("\'", "")
-    
     AminoAcidsStr = str(AminoAcids)
     AminoAcidsStr = AminoAcidsStr.replace(",", "")
     AminoAcidsStr = AminoAcidsStr.replace("[", "")
@@ -162,10 +182,12 @@ def RNAtoProtein(RNAStrand):
     AminoAcidsStr = AminoAcidsStr.replace("\'", "")
     
     #Display the codons and amino acid chain/protein.
-    print("RNA Codons: %s") % codonsStr
-    print("Protein:    %s") % AminoAcidsStr
+    print("RNA Codons:  %s") % codonsStr
+    print("tRNA")
+    print("Anti-Codons: %s") % tRNACodonsStr
+    print("Protein:     %s") % AminoAcidsStr
         
 
-def DNAtoAminoAcids(DNAStrand1):
+def DNAtoProtein(DNAStrand1):
     DNAtoRNA(DNAStrand1)
     RNAtoProtein(RNAStrand)
